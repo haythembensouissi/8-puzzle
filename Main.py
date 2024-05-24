@@ -21,7 +21,7 @@ class PuzzleSolver:
         return distance
     
     @staticmethod
-    def miri_distance(state):
+    def distance(state):
         distance  = 0
         for i in range(8):
             current_position = state[i]
