@@ -66,43 +66,8 @@ class PuzzleSolver:
                     
                     heapq.heappush(open_set, (f_score[next_state], next_state))
         return None
-    def hill_climbing_search(self):
-      current_state = list(self.initial_state)
-      while True:
-        neighbors = self.get_neighbors(current_state)
-        best_neighbor = None
-        best_distance = float('inf')
-        for neighbor in neighbors:
-            distance = self.calculatedistance(neighbor)
-            if distance < best_distance:
-                best_neighbor = neighbor
-                best_distance = distance
-        if self.calculatedistance(current_state) <= best_distance:
-            return self.reconstruct_path({}, tuple(current_state))
-        current_state = best_neighbor
-      return None
-
-    def beam_search(self):
-      initial_state = tuple(self.initial_state)
-      goal_state = tuple(self.goal_state)
-      open_set = []
-      heapq.heappush(open_set, (0, initial_state))
-      came_from = {initial_state: None}
-      while open_set:
-        _, current = heapq.heappop(open_set)
-        if current == goal_state:
-            return self.reconstruct_path(came_from, current)
-        closed_set = set()
-        for next_state in self.get_neighbors(list(current)):
-            next_state = tuple(next_state)  # Convert to tuple to make it hashable
-            if next_state in closed_set:
-                continue
-            if next_state not in open_set:
-                came_from[next_state] = current
-                heapq.heappush(open_set, (self.calculatedistance(next_state), next_state))
-            closed_set.add(next_state)  # Add the tuple to closed_set
-      return None
-
+  
+    
 
     def best_first_search(self):
         initial_state = tuple(self.initial_state)
